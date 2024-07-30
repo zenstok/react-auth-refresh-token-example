@@ -2,7 +2,7 @@
 
 This is an example of how to implement refresh tokens in React.
 
-This project is based on the article ["How to Implement Refresh Tokens in React"](https://dev.to/zenstok/part-23-how-to-implement-refresh-tokens-in-react-84c).
+This project is based on the article ["How to Integrate Refresh Tokens in React"](https://dev.to/zenstok/part-23-how-to-implement-refresh-tokens-in-react-84c).
 
 
 ## Installation
