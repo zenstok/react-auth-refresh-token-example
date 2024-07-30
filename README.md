@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Refresh Tokens in React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an example of how to implement refresh tokens in React.
 
-Currently, two official plugins are available:
+This project is based on the article ["How to Implement Refresh Tokens in React"](https://dev.to/zenstok/how-to-implement-refresh-tokens-with-token-rotation-in-react-1elf).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository: `git clone git@github.com:zenstok/react-auth-refresh-token-example.git`
+2. Install dependencies: `npm install`
+3. Start the app: `npm run dev`
+4. Start containers in the [backend project](https://github.com/zenstok/nestjs-auth-refresh-token-example): `yarn dc up`
+5. Initiate database: `yarn dc-db-init` (once)
 
-- Configure the top-level `parserOptions` property like this:
+If you want to clean the backend project, run command: `yarn dc-clean`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Contributing
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Contributions are welcome! If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
+
+
+## Stay in touch
+
+- Author - [zenstok](https://github.com/zenstok)
+- Twitter - [@zenstok](https://twitter.com/zenstok)
+- Blog - [https://rabbitbyte.club](https://rabbitbyte.club)
+- Email - rares.tarabega@yahoo.com
