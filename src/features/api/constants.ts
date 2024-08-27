@@ -3,6 +3,7 @@ export const routes = {
     me: "/auth/me",
     login: "/auth/login",
     refreshTokens: "/auth/refresh-tokens",
+    clearAuthCookie: "/auth/clear-auth-cookie",
   },
   user: {
     findAll: "/user",

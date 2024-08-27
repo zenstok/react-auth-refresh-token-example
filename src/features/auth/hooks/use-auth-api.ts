@@ -16,21 +16,37 @@ export const useAuthApi = () => {
   const { sendRequest, sendProtectedRequest } = useApi();
 
   const login = async (email: string, password: string) => {
-    const response = await sendRequest(ApiMethod.POST, routes.auth.login, {
-      email,
-      password,
-    });
+    const response = await sendRequest(
+      ApiMethod.POST,
+      routes.auth.login,
+      {
+        email,
+        password,
+      },
+      undefined,
+      { credentials: "include" },
+    );
 
     AuthClientStore.setAccessToken(response.access_token);
-    AuthClientStore.setRefreshToken(response.refresh_token);
 
     return response;
   };
 
+  const clearAuthCookie = () => {
+    return sendRequest(
+      ApiMethod.POST,
+      routes.auth.clearAuthCookie,
+      undefined,
+      undefined,
+      { credentials: "include" },
+    );
+  };
+
   const logout = () => {
     AuthClientStore.removeAccessToken();
-    AuthClientStore.removeRefreshToken();
+    return clearAuthCookie();
   };
+
   const refreshTokens = async () => {
     clearTimeout(timeout);
     if (!debouncedPromise) {
@@ -42,15 +58,15 @@ export const useAuthApi = () => {
 
     timeout = setTimeout(() => {
       const executeLogic = async () => {
-        const response = await sendProtectedRequest(
+        const response = await sendRequest(
           ApiMethod.POST,
           routes.auth.refreshTokens,
           undefined,
-          AuthClientStore.getRefreshToken(),
+          undefined,
+          { credentials: "include" },
         );
 
         AuthClientStore.setAccessToken(response.access_token);
-        AuthClientStore.setRefreshToken(response.refresh_token);
       };
 
       executeLogic().then(debouncedResolve).catch(debouncedReject);
@@ -70,7 +86,7 @@ export const useAuthApi = () => {
     init?: RequestInit,
   ) => {
     try {
-      return await sendProtectedRequest(method, path, body, undefined, init);
+      return await sendProtectedRequest(method, path, body, init);
     } catch (e) {
       if (e?.status === 401) {
         try {
@@ -79,7 +95,7 @@ export const useAuthApi = () => {
           userIsNotAuthenticatedCallback();
           throw e;
         }
-        return await sendProtectedRequest(method, path, body, undefined, init);
+        return await sendProtectedRequest(method, path, body, init);
       }
 
       throw e;

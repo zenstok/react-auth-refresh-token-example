@@ -37,12 +37,9 @@ const sendProtectedRequest = (
   path: string,
   // eslint-disable-next-line
   body?: any,
-  refreshToken?: string,
   init?: RequestInit,
 ) => {
-  const authToken = refreshToken
-    ? AuthClientStore.getRefreshToken()
-    : AuthClientStore.getAccessToken();
+  const authToken = AuthClientStore.getAccessToken();
   if (!authToken) {
     throw new Error("No auth token found");
   }
